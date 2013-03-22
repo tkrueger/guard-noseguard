@@ -1,0 +1,14 @@
+# A sample Guardfile using Noseguard
+# More info at [link to git]
+
+notification :libnotify, :timeout => 3
+
+guard 'noseguard' do
+	watch (%r{(.*)(?<!_test)\.py$}) do |m|
+		"test/" + m[1] + "_test.py"
+	end
+
+	watch (%r{test/(.*)_test\.py$}) do |m|
+        m[0]
+    end
+end
